@@ -241,7 +241,8 @@ Agent 不能自行批准自己的决策。审批和例外必须先通过公司�
 ### 启动 HTTP 治理服务（推荐）
 
 ```bash
-cd semantica-adapter
+# 从 hzbank-internship 成果仓库根目录进入本项目
+cd SemanticaAdapter
 uv sync --extra server
 
 export SEMANTICA_ADAPTER_API_KEY='通过密钥管理系统注入的随机密钥'
@@ -413,7 +414,7 @@ semantica-adapter/
 
 ## 与 short-term-memory 的关系
 
-本项目不与 `short-term-memory` 合并源码或仓库。两者都面向 Agent，但职责和运行状态不同：
+本项目与 `short-term-memory` 共置于实习成果仓库，便于统一交付，但不合并 Python 包、运行进程或状态。两者都面向 Agent，但职责和运行状态不同：
 
 | 项目 | 核心职责 | 典型调用时机 |
 |---|---|---|
@@ -429,7 +430,7 @@ flowchart LR
     A --> L["LLM / 业务系统"]
 ```
 
-未来可以在单独的 Agent 应用中编排两个服务，但独立仓库更有利于分别部署、测试、授权、扩容和替换。
+未来可以在单独的 Agent 应用中编排两个服务；两个子项目仍应分别部署、测试、授权、扩容和替换。
 
 ## 审计包内容
 

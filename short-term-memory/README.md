@@ -241,8 +241,7 @@ Headroom 输入只包含原文，不包含 L3/L4 摘要或旧 generation。已�
 要求 Python 3.11–3.13、Redis、Headroom 和 `uv`。
 
 ```bash
-git clone --branch short-term-memory --single-branch \
-  https://github.com/ZCDu/AGFS-MEM.git short-term-memory
+# 从 hzbank-internship 成果仓库根目录进入本项目
 cd short-term-memory
 uv sync --extra api --extra deepseek --extra dev
 ```
