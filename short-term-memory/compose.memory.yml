@@ -1,0 +1,79 @@
+name: short-term-memory
+
+x-memory-environment: &memory-environment
+  SHORT_TERM_MEMORY_ENV: production
+  SHORT_TERM_MEMORY_HOME: /var/lib/short-term-memory
+  REDIS_URL: redis://redis:6379/0
+  HEADROOM_SERVICE_URL: http://headroom:8787
+  HEADROOM_CCR_TTL_SECONDS: "43200"
+  REDIS_SESSION_TTL_SECONDS: "43200"
+  HEADROOM_COMPRESSION_WORKERS: "8"
+  MEMORY_WORKER_SHUTDOWN_GRACE_SECONDS: "30"
+  MEMORY_API_AUTH_TOKEN: "${MEMORY_API_AUTH_TOKEN:?set MEMORY_API_AUTH_TOKEN}"
+  SHORT_TERM_MEMORY_SCOPE_SECRET: "${SHORT_TERM_MEMORY_SCOPE_SECRET:?set SHORT_TERM_MEMORY_SCOPE_SECRET}"
+
+services:
+  redis:
+    image: redis:7.2.15-bookworm
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "everysec"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 1s
+      retries: 30
+
+  headroom:
+    image: "${HEADROOM_IMAGE:?set HEADROOM_IMAGE}"
+    restart: unless-stopped
+    command:
+      - headroom
+      - proxy
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8787"
+      - --workers
+      - "1"
+      - --limit-concurrency
+      - "200"
+      - --openai-api-url
+      - https://api.deepseek.com
+    environment:
+      HEADROOM_CCR_TTL_SECONDS: "43200"
+    ports:
+      - "${HEADROOM_PORT:-8787}:8787"
+
+  memory-api:
+    image: "${MEMORY_SERVICE_IMAGE:?set MEMORY_SERVICE_IMAGE}"
+    restart: unless-stopped
+    command: ["short-term-memory-api"]
+    environment: *memory-environment
+    depends_on:
+      redis:
+        condition: service_healthy
+      headroom:
+        condition: service_started
+    ports:
+      - "${MEMORY_API_PORT:-8080}:8080"
+    volumes:
+      - memory-journals:/var/lib/short-term-memory
+
+  compression-worker:
+    image: "${MEMORY_SERVICE_IMAGE:?set MEMORY_SERVICE_IMAGE}"
+    restart: unless-stopped
+    command: ["short-term-memory-worker"]
+    environment: *memory-environment
+    depends_on:
+      redis:
+        condition: service_healthy
+      headroom:
+        condition: service_started
+    volumes:
+      - memory-journals:/var/lib/short-term-memory
+
+volumes:
+  redis-data:
+  memory-journals:

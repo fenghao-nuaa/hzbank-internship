@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+*.so
+
+# Test and lint caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE and operating system
+.idea/
+.vscode/
+.worktrees/
+*.swp
+*.swo
+.DS_Store
+
+# Local environment values
+.env
+.env.*
+!.env.example
+
+# Local validation evidence and runtime state.
+validation-run/
+tests/e2e/evaluation/*.local.json

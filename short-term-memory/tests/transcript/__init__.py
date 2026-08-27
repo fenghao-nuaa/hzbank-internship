@@ -1,0 +1,1 @@
+"""Virtual Journal transcript tests."""
