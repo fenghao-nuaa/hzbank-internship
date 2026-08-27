@@ -1,1 +1,17 @@
 .worktrees/
+.DS_Store
+.idea/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.env
+.env.*
+!.env.example
+dist/
+build/
+*.egg-info/
+*.ses
+*-output/
+*-state/
