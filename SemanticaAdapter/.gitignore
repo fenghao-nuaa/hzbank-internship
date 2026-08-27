@@ -1,0 +1,17 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+*.ses
+.pytest_cache/
+.ruff_cache/
+.coverage
+demo-output/
+verification-output/
+examples/banking_audit/output/
+audit-output/
+amount-reconciliation-output/
+amount-reconciliation-state/
+dist/
+*.egg-info/
+*.db

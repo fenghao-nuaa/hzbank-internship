@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "semantica-adapter"
+version = "0.1.0"
+description = "Provider-neutral agent governance interfaces backed by Semantica"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["httpx>=0.28,<1"]
+
+[project.optional-dependencies]
+semantica = ["semantica==0.6.6"]
+server = [
+    "fastapi>=0.115,<1",
+    "semantica==0.6.6",
+    "uvicorn[standard]>=0.30,<1",
+]
+
+[project.scripts]
+semantica-adapter-server = "semantica_adapter.http.runtime:main"
+
+[dependency-groups]
+dev = ["pytest>=8.0,<9.0"]
+
+[tool.hatch.build]
+exclude = ["/legacy"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/semantica_adapter"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["src"]
+filterwarnings = [
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated:starlette.exceptions.StarletteDeprecationWarning",
+]

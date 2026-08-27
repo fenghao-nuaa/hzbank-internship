@@ -1,0 +1,2 @@
+ENTITY|POL-RISK-001:1.0|Policy|Manual Review Policy
+TRIPLE|POL-RISK-001:1.0|source_ref|policy.txt#article-3
