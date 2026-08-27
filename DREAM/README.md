@@ -245,7 +245,7 @@ Background Review 按用户作用域自适应触发，任一条件满足即可�
 ### 安装
 
 ```bash
-git clone <repository-url>
+# 从 hzbank-internship 成果仓库根目录进入本项目
 cd DREAM
 python -m venv .venv
 source .venv/bin/activate
