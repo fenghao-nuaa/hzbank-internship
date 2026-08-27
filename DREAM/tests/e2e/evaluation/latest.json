@@ -1,0 +1,56 @@
+{
+  "run": {
+    "users": [
+      {
+        "user_id": "project-manager",
+        "task_count": 12,
+        "active_dream_cycles": 2,
+        "supported_profile_facts": 5,
+        "total_profile_facts": 5,
+        "personalized_successes": 7,
+        "personalized_tasks": 7
+      },
+      {
+        "user_id": "python-beginner",
+        "task_count": 12,
+        "active_dream_cycles": 2,
+        "supported_profile_facts": 3,
+        "total_profile_facts": 3,
+        "personalized_successes": 7,
+        "personalized_tasks": 7
+      },
+      {
+        "user_id": "technical-lead",
+        "task_count": 12,
+        "active_dream_cycles": 2,
+        "supported_profile_facts": 6,
+        "total_profile_facts": 6,
+        "personalized_successes": 7,
+        "personalized_tasks": 7
+      }
+    ],
+    "severe_hallucinations": 0,
+    "cross_user_leaks": 0,
+    "evolved_ai_successes": 21,
+    "evolved_ai_tasks": 21,
+    "completed_dream_writeback_cycles": 6,
+    "change_conflict_case_passed": true,
+    "failure_fallback_or_rollback_passed": true,
+    "missing_source_event_ids": 0,
+    "incomplete_writebacks": 0,
+    "inactive_publications": 0,
+    "decision_cards_with_private_user_data": 0,
+    "agent_profile_version": 1,
+    "agent_profile_sha256_before": "986792353e945bded482ddb3bf15095f3776170c9fa2cbba1bb4feeb69673efc",
+    "agent_profile_sha256_after": "986792353e945bded482ddb3bf15095f3776170c9fa2cbba1bb4feeb69673efc",
+    "codex_thread_count": 36,
+    "missing_codex_threads": 0,
+    "duplicate_codex_threads": 0,
+    "agnes_advisory": "Cycle reviews used isolated Codex review tasks and human evidence audit."
+  },
+  "profile_evidence_rate": 1.0,
+  "personalization_rate": 1.0,
+  "ai_evolution_rate": 1.0,
+  "passed": true,
+  "failure_reasons": []
+}

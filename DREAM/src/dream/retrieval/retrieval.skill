@@ -1,0 +1,22 @@
+name: memory-retrieval
+version: 1.0
+description:
+  Retrieve relevant DREAM memories
+  for current agent tasks.
+input:
+  user_id:
+    type: string
+  query:
+    type: string
+  task_context:
+    type: object
+output:
+  memories:
+    type: array
+  context:
+    type: string
+rules:
+  - Never return all memories
+  - Return only relevant memories
+  - Prefer high confidence memories
+  - Respect user isolation
